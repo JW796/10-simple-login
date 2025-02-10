@@ -26,6 +26,9 @@ function App() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        <button className="bg-blue-600 text-white text-lg font-medium rounded-lg py-1 px-3" type="submit">
+          Log in
+        </button>
       </form>
     </>
   );
