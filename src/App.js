@@ -30,10 +30,14 @@ function App() {
       <div>
         {loggedIn ? (
           <>
-          <div>
-            <h2>Welcome {username}=!</h2>
-            <button>Log Out</button>
-          </div>
+            <div className="flex flex-col items-center gap-4">
+              <h2 className="text-center text-3xl mt-4 py-2">
+                Welcome {username}=!
+              </h2>
+              <button className="bg-blue-600 text-white text-lg font-medium rounded-lg py-1 px-3">
+                Log Out
+              </button>
+            </div>
           </>
         ) : (
           <form
