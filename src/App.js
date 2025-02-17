@@ -15,6 +15,7 @@ function App() {
       } else {
         throw Error;
       }
+      setPassword("");
     } catch (error) {
       setError("Incorrect username or password");
       setUsername("");
@@ -34,7 +35,9 @@ function App() {
               <h2 className="text-center text-3xl mt-4 py-2">
                 Welcome {username}=!
               </h2>
-              <button className="bg-blue-600 text-white text-lg font-medium rounded-lg py-1 px-3">
+              <button className="bg-blue-600 text-white text-lg font-medium rounded-lg py-1 px-3"
+              onClick={(() => setLoggedIn(false))}
+              >
                 Log Out
               </button>
             </div>
