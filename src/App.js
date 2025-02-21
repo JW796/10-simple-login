@@ -4,7 +4,13 @@ function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState("false");
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
+  const [state, dispatch] = useReducer(loginInReducer, {
+    username:"",
+    password:"",
+    loggedIn: false,
+    error: "",
+  });
 
   const handleSumit = e => {
     e.preventDefault();
