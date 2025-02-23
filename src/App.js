@@ -1,10 +1,49 @@
-import { useState } from "react";
+import { useReducer } from "react";
+
+const loginInReducer = (state, action) => {
+  switch(action.type) {
+    case "field": {
+      return {
+        ...state,
+        [action.fieldName]: action.payload
+      }
+    }
+    case "logIn" {
+      return {
+        ...state,
+        error: "",
+      }
+    }
+    case "success": 
+        return {
+          ...state,
+          loggedIn: true,
+          password: "",
+      }
+      case "error": {
+        return {
+          ...state,
+          error: "Incorrect username or password",
+          loggedIn: false,
+          username: "",
+          password: "",
+        }
+      }
+      case "logOut": {
+        return {
+          ...state,
+          loggedIn: false,
+        }
+      }
+      default: return state;
+  }
+}
 
 function App() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState("false");
-  const [error, setError] = useState("");
+  // const [username, setUsername] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [loggedIn, setLoggedIn] = useState("false");
+  // const [error, setError] = useState("");
   const [state, dispatch] = useReducer(loginInReducer, {
     username:"",
     password:"",
