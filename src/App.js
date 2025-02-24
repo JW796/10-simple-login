@@ -8,7 +8,7 @@ const loginInReducer = (state, action) => {
         [action.fieldName]: action.payload
       }
     }
-    case "logIn" {
+    case "logIn": {
       return {
         ...state,
         error: "",
@@ -53,7 +53,9 @@ function App() {
 
   const handleSumit = e => {
     e.preventDefault();
-    setError("");
+
+    dispatch({ type: "login" })
+    
     try {
       if (username === "James" && password ==="123") {
         setLoggedIn(true);
