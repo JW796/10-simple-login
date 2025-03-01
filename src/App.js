@@ -1,43 +1,44 @@
 import { useReducer } from "react";
 
 const loginInReducer = (state, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case "field": {
       return {
         ...state,
-        [action.fieldName]: action.payload
-      }
+        [action.fieldName]: action.payload,
+      };
     }
     case "logIn": {
       return {
         ...state,
         error: "",
-      }
+      };
     }
-    case "success": 
-        return {
-          ...state,
-          loggedIn: true,
-          password: "",
-      }
-      case "error": {
-        return {
-          ...state,
-          error: "Incorrect username or password",
-          loggedIn: false,
-          username: "",
-          password: "",
-        }
-      }
-      case "logOut": {
-        return {
-          ...state,
-          loggedIn: false,
-        }
-      }
-      default: return state;
+    case "success":
+      return {
+        ...state,
+        loggedIn: true,
+        password: "",
+      };
+    case "error": {
+      return {
+        ...state,
+        error: "Incorrect username or password",
+        loggedIn: false,
+        username: "",
+        password: "",
+      };
+    }
+    case "logOut": {
+      return {
+        ...state,
+        loggedIn: false,
+      };
+    }
+    default:
+      return state;
   }
-}
+};
 
 function App() {
   // const [username, setUsername] = useState("");
@@ -45,27 +46,27 @@ function App() {
   // const [loggedIn, setLoggedIn] = useState("false");
   // const [error, setError] = useState("");
   const [state, dispatch] = useReducer(loginInReducer, {
-    username:"",
-    password:"",
+    username: "",
+    password: "",
     loggedIn: false,
     error: "",
   });
 
-  const handleSumit = e => {
+  const handleSumit = (e) => {
     e.preventDefault();
 
-    dispatch({ type: "login" })
+    dispatch({ type: "login" });
 
     try {
-      if (state.username === "James" && state.password ==="123") {
-        dispatch({type: "success"});
+      if (state.username === "James" && state.password === "123") {
+        dispatch({ type: "success" });
       } else {
         throw Error;
       }
     } catch (error) {
-      dispatch({ type:"error" })
-  }
-}
+      dispatch({ type: "error" });
+    }
+  };
 
   return (
     <>
@@ -79,8 +80,9 @@ function App() {
               <h2 className="text-center text-3xl mt-4 py-2">
                 Welcome {state.username}=!
               </h2>
-              <button className="bg-blue-600 text-white text-lg font-medium rounded-lg py-1 px-3"
-              onClick={() => dispatch({type: "logOut"})}
+              <button
+                className="bg-blue-600 text-white text-lg font-medium rounded-lg py-1 px-3"
+                onClick={() => dispatch({ type: "logOut" })}
               >
                 Log Out
               </button>
@@ -97,11 +99,13 @@ function App() {
               autoComplete="username"
               placeholder="Username"
               value={state.username}
-              onChange={(e) => dispatch({
-                type: "field",
-                fieldName: "username",
-                payload: e.target.value,
-              })}
+              onChange={(e) =>
+                dispatch({
+                  type: "field",
+                  fieldName: "username",
+                  payload: e.target.value,
+                })
+              }
             />
             <input
               className="border rounded-lg px-2 py-1"
@@ -109,11 +113,13 @@ function App() {
               autoComplete="username"
               placeholder="Username"
               value={state.password}
-              onChange={(e) => dispatch({
-                type: "field",
-                fieldName: "password",
-                payload:e.target.value,
-              })}
+              onChange={(e) =>
+                dispatch({
+                  type: "field",
+                  fieldName: "password",
+                  payload: e.target.value,
+                })
+              }
             />
             <button
               className="bg-blue-600 text-white text-lg font-medium rounded-lg py-1 px-3"
